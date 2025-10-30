@@ -1,3 +1,5 @@
+import { PostsSkeleton } from "@/app/ui/components/skeletons";
+
 export default function Loading() {
-  return <div>Loading...</div>;
+  return <PostsSkeleton />;
 }
