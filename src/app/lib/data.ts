@@ -1,6 +1,8 @@
 import { createClient } from '@vercel/postgres';
 import { sql } from '@vercel/postgres';
 
+import { unstable_noStore as noStore } from 'next/cache';
+
 export async function connectToDB() {
   const client = createClient();
   await client.connect();
@@ -17,6 +19,7 @@ export async function connectToDB() {
 
 export async function getPosts() {
   try {
+    noStore(); // Disable caching for this function
     const data = await sql`SELECT * FROM posts`
     // console.log(data.rows)
     return data.rows;
