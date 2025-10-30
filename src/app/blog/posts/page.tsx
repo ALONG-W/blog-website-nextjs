@@ -1,8 +1,9 @@
 // import { posts } from '@/app/lib/placeholder-data';
-import Post from "@/app/ui/components/posts/Post";
-import { connectToDB, getPosts } from "@/app/lib/data";
 import Link from "next/link"
 import { Button } from "@/app/ui/components/button"
+import Post from "@/app/ui/components/posts/Post";
+import { connectToDB, getPosts } from "@/app/lib/data";
+
 
 export default async function Page() {
   const client = await connectToDB();
@@ -17,7 +18,7 @@ export default async function Page() {
       </Link>
       <h1>Posts</h1>
       {posts?.map((post) => (
-        <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.date} />
+        <Post key={post.id} {...post} />
       ))}
     </>
   );
