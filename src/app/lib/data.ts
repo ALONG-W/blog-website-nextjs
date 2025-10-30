@@ -1,7 +1,7 @@
-import { createClient } from '@vercel/postgres';
-import { sql } from '@vercel/postgres';
+import { createClient } from "@vercel/postgres";
+import { sql } from "@vercel/postgres";
 
-import { unstable_noStore as noStore } from 'next/cache';
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function connectToDB() {
   const client = createClient();
@@ -9,11 +9,11 @@ export async function connectToDB() {
 
   try {
     if (client) {
-      console.log('Connected to database');
+      console.log("Connected to database");
       return client;
     }
   } catch (error) {
-    console.error('Error connecting to database', error);
+    console.error("Error connecting to database", error);
   }
 }
 
@@ -21,12 +21,12 @@ export async function getPosts() {
   try {
     noStore(); // Disable caching for this function
 
-    await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate delay
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
 
-    const data = await sql`SELECT * FROM posts`
+    const data = await sql`SELECT * FROM posts`;
     // console.log(data.rows)
     return data.rows;
   } catch (error) {
-    console.error('Error getting posts', error);
+    console.error("Error getting posts", error);
   }
 }
