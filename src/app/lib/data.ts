@@ -20,6 +20,9 @@ export async function connectToDB() {
 export async function getPosts() {
   try {
     noStore(); // Disable caching for this function
+
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate delay
+
     const data = await sql`SELECT * FROM posts`
     // console.log(data.rows)
     return data.rows;
